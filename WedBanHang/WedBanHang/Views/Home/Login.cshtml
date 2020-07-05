@@ -1,27 +1,26 @@
 ﻿
-@{
-    ViewBag.Title = "Login";
-}
-<form>
-    <table>
-        <tr>
-            <td>
-                <a>User Name</a>
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <a>Password</a>
-            </td>
-            <td>
-                <input type="text" />
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" /></td>
-        </tr>
-    </table>
-</form>    
+@{ ViewBag.Title = "Login"; }
+    <form action="@Url.Action("XulyLogin")" method="post">
+        <table>
+            <tr>
+                <td>
+                    <a>User Name</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_DangNhap" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a>Password</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_Password" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Đăng nhập"/></td>
+            </tr>
+        </table>
+    </form>

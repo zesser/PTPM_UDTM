@@ -4,3 +4,7 @@
     display: block;
     margin-top: 0;
 }
+div.right_1{
+    float:right;
+    display:inline-block;
+}

@@ -1,0 +1,4 @@
+﻿@model IEnumerable<WedBanHang.Models.tbl_Loai>
+@foreach (var item in Model) {
+    <a class="dropdown-item" href="@Url.Action("pageLoais",new {mLoai=item.MaLoai})">@item.TenLoai</a>
+}

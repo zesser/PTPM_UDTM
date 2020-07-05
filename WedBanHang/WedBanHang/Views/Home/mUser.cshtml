@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewBag.Title = "mUser";
+}
+@using WedBanHang.Models
+@model tbl_KhachHang 
+<h2>Xin chào khách hàng @Model.TenKhachHang</h2>
+<a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mDangxuat")">Đăng xuất</a>
+

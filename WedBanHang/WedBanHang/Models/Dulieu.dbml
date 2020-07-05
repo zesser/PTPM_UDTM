@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="DulieuDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-L492U4AI\TAIPD;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_ChiTietHD" Member="tbl_ChiTietHDs">
+    <Type Name="tbl_ChiTietHD">
+      <Column Name="MAHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MASP" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SOLUONG" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_SanPham_tbl_ChiTietHD" Member="tbl_SanPham" ThisKey="MASP" OtherKey="MaSanPham" Type="tbl_SanPham" IsForeignKey="true" />
+      <Association Name="tbl_HoaDon_tbl_ChiTietHD" Member="tbl_HoaDon" ThisKey="MAHD" OtherKey="MaHoaDon" Type="tbl_HoaDon" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_SanPham" Member="tbl_SanPhams">
+    <Type Name="tbl_SanPham">
+      <Column Name="MaSanPham" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenSP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MaL" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MaSX" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Gia" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Hinh" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MauSac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="tbl_SanPham_tbl_ChiTietHD" Member="tbl_ChiTietHDs" ThisKey="MaSanPham" OtherKey="MASP" Type="tbl_ChiTietHD" />
+      <Association Name="tbl_Loai_tbl_SanPham" Member="tbl_Loai" ThisKey="MaL" OtherKey="MaLoai" Type="tbl_Loai" IsForeignKey="true" />
+      <Association Name="tbl_NhaSanXuat_tbl_SanPham" Member="tbl_NhaSanXuat" ThisKey="MaSX" OtherKey="MaNSX" Type="tbl_NhaSanXuat" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_KhachHang" Member="tbl_KhachHangs">
+    <Type Name="tbl_KhachHang">
+      <Column Name="MaKhachHang" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenKhachHang" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="NVarChar(15)" CanBeNull="true" />
+      <Column Name="GioiTinh" Type="System.String" DbType="NVarChar(3)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="MatKhau" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="tbl_KhachHang_tbl_HoaDon" Member="tbl_HoaDons" ThisKey="MaKhachHang" OtherKey="MaKH" Type="tbl_HoaDon" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_HoaDon" Member="tbl_HoaDons">
+    <Type Name="tbl_HoaDon">
+      <Column Name="MaHoaDon" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NgayTao" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="MaKH" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="tbl_HoaDon_tbl_ChiTietHD" Member="tbl_ChiTietHDs" ThisKey="MaHoaDon" OtherKey="MAHD" Type="tbl_ChiTietHD" />
+      <Association Name="tbl_KhachHang_tbl_HoaDon" Member="tbl_KhachHang" ThisKey="MaKH" OtherKey="MaKhachHang" Type="tbl_KhachHang" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Loai" Member="tbl_Loais">
+    <Type Name="tbl_Loai">
+      <Column Name="MaLoai" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenLoai" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Nhom" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_Loai_tbl_SanPham" Member="tbl_SanPhams" ThisKey="MaLoai" OtherKey="MaL" Type="tbl_SanPham" />
+      <Association Name="tbl_Nhom_tbl_Loai" Member="tbl_Nhom" ThisKey="Nhom" OtherKey="MaNhom" Type="tbl_Nhom" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_NhaSanXuat" Member="tbl_NhaSanXuats">
+    <Type Name="tbl_NhaSanXuat">
+      <Column Name="MaNSX" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TenNSX" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_NhaSanXuat_tbl_SanPham" Member="tbl_SanPhams" ThisKey="MaNSX" OtherKey="MaSX" Type="tbl_SanPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_Nhom" Member="tbl_Nhoms">
+    <Type Name="tbl_Nhom">
+      <Column Name="MaNhom" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenNhom" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_Nhom_tbl_Loai" Member="tbl_Loais" ThisKey="MaNhom" OtherKey="Nhom" Type="tbl_Loai" />
+    </Type>
+  </Table>
+</Database>

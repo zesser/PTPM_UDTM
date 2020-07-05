@@ -1,7 +1,8 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "SanPham";
 }
+@using WedBanHang.Models
+@model tbl_SanPham
     <div class="container">
         <div class="row mt-5">
             <div class="product-group">
@@ -44,14 +45,14 @@
                     </div>
                     <div>
                         <div>
-                            <h1>Ten san pham</h1>
-                            <h3>Ma san pham</h3>
+                            <h1>@Model.TenSP</h1>
+                            <h3>@Model.TenSP</h3>
                             <h3>Xem them <a href="#">a</a>,<a href="#">a</a>,<a href="#">a</a></h3>
-                            <h1>Gia</h1>
+                            <h1>@Model.Gia</h1>
                             <h1>Tinh trang</h1>
                             <form class="form-inline my-2 my-lg-2">
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Thêm gio Hang</button>
-                                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Mua ngay</button>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("ThemGioHang",new {Ma= Model.MaSanPham,select=0})">Thêm gio Hang</a>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("ThemGioHang",new {Ma= Model.MaSanPham,select=1})">Mua ngay</a>
                             </form>
                         </div>
                     </div>

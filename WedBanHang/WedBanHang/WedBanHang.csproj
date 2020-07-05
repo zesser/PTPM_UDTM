@@ -44,6 +44,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -98,7 +99,10 @@
     <Content Include="Models\Anh\101687691_146469747040460_122739041354383360_n.jpg" />
     <Content Include="Models\Anh\con-gai-han-quoc-cham-soc-da-1.jpg" />
     <Content Include="Models\Anh\FB_android_icons.jpg" />
+    <Content Include="Models\Anh\gio hang.jpg" />
     <Content Include="Models\Anh\google_icon.jpg" />
+    <Content Include="Models\Anh\Jungle.jpg" />
+    <Content Include="Models\Anh\user.jpg" />
     <Content Include="Scripts\css\bootstrap-grid.css.map" />
     <Content Include="Scripts\css\bootstrap-grid.min.css.map" />
     <Content Include="Scripts\css\bootstrap-reboot.css.map" />
@@ -111,6 +115,11 @@
     <Content Include="Scripts\css\bootstrap-reboot.min.css" />
     <Content Include="Scripts\css\bootstrap.css" />
     <Content Include="Scripts\css\bootstrap.min.css" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\js\bootstrap.bundle.js" />
     <Content Include="Scripts\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\js\bootstrap.js" />
@@ -130,6 +139,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Dulieu.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Dulieu.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GioHang.cs" />
+    <Compile Include="Models\Muser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -142,12 +158,27 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Models\Dulieu.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>Dulieu.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Models\Dulieu.dbml.layout">
+      <DependentUpon>Dulieu.dbml</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Register.cshtml" />
+    <Content Include="Views\Home\Giohang.cshtml" />
+    <Content Include="Views\Home\mUser.cshtml" />
+    <Content Include="Views\Home\lstLoaiSP.cshtml" />
+    <Content Include="Views\Home\lstNhom.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Home\pageLoais.cshtml" />
+    <Content Include="Views\Home\pageNhoms.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -157,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
