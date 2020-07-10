@@ -47,6 +47,7 @@ D:\LT_PMTM\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CoreCompileInputs.c
 D:\LT_PMTM\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CopyComplete
 D:\LT_PMTM\WedBanHang\WedBanHang\obj\Debug\WedBanHang.dll
 D:\LT_PMTM\WedBanHang\WedBanHang\obj\Debug\WedBanHang.pdb
+C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CoreCompileInputs.cache
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\WedBanHang.dll.config
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\WedBanHang.dll
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\WedBanHang.pdb
@@ -91,8 +92,7 @@ C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\System.Web.Helpers.xml
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\System.Web.Mvc.xml
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csprojAssemblyReference.cache
-C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CoreCompileInputs.cache
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CopyComplete
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.dll
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.pdb
+C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csprojAssemblyReference.cache

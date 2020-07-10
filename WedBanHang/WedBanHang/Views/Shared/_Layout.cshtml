@@ -6,17 +6,19 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <link href="~/Scripts/css/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Scripts/StyleSheet1.css" rel="stylesheet" />
-    <style>
-    </style>
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <script src="http://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="~/Scripts/js/jquery.hislide.js"></script>
+    <link href="~/Scripts/jquery.hislide.min.css" rel="stylesheet" />
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand">Navbar</a>
             <div class="collapse navbar-collapse" id="NavbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index")">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="@Url.Action("Index","Home")">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown mydropdowncss">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"
@@ -24,44 +26,46 @@
                             Dropdown
                         </a>
                         <div class="dropdown-menu">
-                            @Html.Action("lstLoaiSP");
+                            @Html.Action("lstLoaiSP","Home")
                             <div class="dropdown-divider"></div>
                         </div>
                     </li>
                 </ul>
-                <div class="nav justify-content-end">
-                    <form class="form-inline my-2 my-lg-0" action="@Url.Action("Search")" method="post">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="txtseach" />
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                    <form class="form-inline my-2 my-lg-2">
-                        <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("Giohang")">Gio Hang</a>
-                    </form>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item dropdown mydropdowncss">
-                            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"
-                               aria-haspopup="true" aria-expanded="false">
-                                <img src="~/Models/Anh/user.jpg" width="25" height="25" />
-                            </a>
-                            <div class="dropdown-menu">
-                                @{
-                                            var muser = Session["UserDN"] as WedBanHang.Models.Muser;
-                                            if (Session["UserDN"] == null)
-                                            {
-                                        <a class="dropdown-item" href="@Url.Action("Login")">Đăng Nhập</a>
-                                        <a class="dropdown-item" href="@Url.Action("Register")">Đăng Ký</a>
-                                    }
-                                    else
-                                    {
-                                        var user = Session["UserDN"] as WedBanHang.Models.Muser;
-                                        <a class="dropdown-item" href="@Url.Action("mUser",new {Ma=user.Login})">@user.mUserName</a>
-                                        <a class="dropdown-item" href="@Url.Action("mDangxuat")">Đăng Xuất</a>
-                                    }
+            </div>
+            <div class="nav justify-content-end">
+                <form class="form-inline my-2 my-lg-0" action="@Url.Action("Search","Home")" method="post">
+                    <input class="form-control my-2 mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="txtseach" />
+                    <button class="btn btn-outline-success my-2 mr-sm-0" type="submit">Search</button>
+                </form>
+                <form class="form-inline my-2 my-lg-2">
+                    <a class="btn btn-outline-success my-2 mr-sm-0" href="@Url.Action("Giohang","Home")">Gio Hang</a>
+                </form>
+                <ul class="navbar-nav my-2 my-lg-2">
+                    <li class="nav-item dropdown mydropdowncss">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"
+                           aria-haspopup="true" aria-expanded="false">
+                            <svg width="35" height="35" viewBox="0 0 16 16" class="bi bi-file-person-fill my-2 mr-sm-0" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M2 3a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V3zm6 7a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 11.825 10.623 11 8 11s-4.146.826-5 1.755V13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z"/>
+                            </svg>
+                        </a>
+                        <div class="dropdown-menu">
+                            @{
+                                var muser = Session["UserDN"] as WedBanHang.Models.Muser;
+                                if (Session["UserDN"] == null)
+                                {
+                                    <a class="dropdown-item" href="@Url.Action("Login","UserActive")">Đăng Nhập</a>
+                                    <a class="dropdown-item" href="@Url.Action("Register","UserActive")">Đăng Ký</a>
                                 }
-                            </div>
-                        </li>
-                    </ul>
-                </div>
+                                else
+                                {
+                                    var user = Session["UserDN"] as WedBanHang.Models.Muser;
+                                    <a class="dropdown-item" href="@Url.Action("mUser","UserActive",new {Ma=user.MaKH})">@user.mUsername</a>
+                                    <a class="dropdown-item" href="@Url.Action("mDangxuat","UserActive")">Đăng Xuất</a>
+                                }
+                            }
+                        </div>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
@@ -69,7 +73,7 @@
         <div class="container">
             <div class="collapse navbar-collapse" id="NavbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    @Html.Action("lstNhom")
+                    @Html.Action("lstNhom","Home")
                 </ul>
             </div>
         </div>

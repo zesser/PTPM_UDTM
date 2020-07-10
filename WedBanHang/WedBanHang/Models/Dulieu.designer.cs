@@ -22,7 +22,7 @@ namespace WedBanHang.Models
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DataSource")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QLSanPham")]
 	public partial class DulieuDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -51,10 +51,13 @@ namespace WedBanHang.Models
     partial void Inserttbl_Nhom(tbl_Nhom instance);
     partial void Updatetbl_Nhom(tbl_Nhom instance);
     partial void Deletetbl_Nhom(tbl_Nhom instance);
+    partial void InsertGiamGia(GiamGia instance);
+    partial void UpdateGiamGia(GiamGia instance);
+    partial void DeleteGiamGia(GiamGia instance);
     #endregion
 		
 		public DulieuDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DataSourceConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLSanPhamConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -136,6 +139,14 @@ namespace WedBanHang.Models
 			get
 			{
 				return this.GetTable<tbl_Nhom>();
+			}
+		}
+		
+		public System.Data.Linq.Table<GiamGia> GiamGias
+		{
+			get
+			{
+				return this.GetTable<GiamGia>();
 			}
 		}
 	}
@@ -358,6 +369,8 @@ namespace WedBanHang.Models
 		
 		private EntitySet<tbl_ChiTietHD> _tbl_ChiTietHDs;
 		
+		private EntitySet<GiamGia> _GiamGias;
+		
 		private EntityRef<tbl_Loai> _tbl_Loai;
 		
 		private EntityRef<tbl_NhaSanXuat> _tbl_NhaSanXuat;
@@ -389,6 +402,7 @@ namespace WedBanHang.Models
 		public tbl_SanPham()
 		{
 			this._tbl_ChiTietHDs = new EntitySet<tbl_ChiTietHD>(new Action<tbl_ChiTietHD>(this.attach_tbl_ChiTietHDs), new Action<tbl_ChiTietHD>(this.detach_tbl_ChiTietHDs));
+			this._GiamGias = new EntitySet<GiamGia>(new Action<GiamGia>(this.attach_GiamGias), new Action<GiamGia>(this.detach_GiamGias));
 			this._tbl_Loai = default(EntityRef<tbl_Loai>);
 			this._tbl_NhaSanXuat = default(EntityRef<tbl_NhaSanXuat>);
 			OnCreated();
@@ -595,6 +609,19 @@ namespace WedBanHang.Models
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_SanPham_GiamGia", Storage="_GiamGias", ThisKey="MaSanPham", OtherKey="MaSP")]
+		public EntitySet<GiamGia> GiamGias
+		{
+			get
+			{
+				return this._GiamGias;
+			}
+			set
+			{
+				this._GiamGias.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_Loai_tbl_SanPham", Storage="_tbl_Loai", ThisKey="MaL", OtherKey="MaLoai", IsForeignKey=true)]
 		public tbl_Loai tbl_Loai
 		{
@@ -694,12 +721,19 @@ namespace WedBanHang.Models
 			this.SendPropertyChanging();
 			entity.tbl_SanPham = null;
 		}
-
-        public static explicit operator tbl_SanPham(List<tbl_SanPham> v)
-        {
-            throw new NotImplementedException();
-        }
-    }
+		
+		private void attach_GiamGias(GiamGia entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_SanPham = this;
+		}
+		
+		private void detach_GiamGias(GiamGia entity)
+		{
+			this.SendPropertyChanging();
+			entity.tbl_SanPham = null;
+		}
+	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.tbl_KhachHang")]
 	public partial class tbl_KhachHang : INotifyPropertyChanging, INotifyPropertyChanged
@@ -1494,6 +1528,181 @@ namespace WedBanHang.Models
 		{
 			this.SendPropertyChanging();
 			entity.tbl_Nhom = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.GiamGia")]
+	public partial class GiamGia : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MaGiamGia;
+		
+		private string _MaSP;
+		
+		private System.Nullable<double> _TiLeGiam;
+		
+		private string _GhiChu;
+		
+		private EntityRef<tbl_SanPham> _tbl_SanPham;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMaGiamGiaChanging(string value);
+    partial void OnMaGiamGiaChanged();
+    partial void OnMaSPChanging(string value);
+    partial void OnMaSPChanged();
+    partial void OnTiLeGiamChanging(System.Nullable<double> value);
+    partial void OnTiLeGiamChanged();
+    partial void OnGhiChuChanging(string value);
+    partial void OnGhiChuChanged();
+    #endregion
+		
+		public GiamGia()
+		{
+			this._tbl_SanPham = default(EntityRef<tbl_SanPham>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiamGia", DbType="NChar(10) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MaGiamGia
+		{
+			get
+			{
+				return this._MaGiamGia;
+			}
+			set
+			{
+				if ((this._MaGiamGia != value))
+				{
+					this.OnMaGiamGiaChanging(value);
+					this.SendPropertyChanging();
+					this._MaGiamGia = value;
+					this.SendPropertyChanged("MaGiamGia");
+					this.OnMaGiamGiaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaSP", DbType="NVarChar(50)")]
+		public string MaSP
+		{
+			get
+			{
+				return this._MaSP;
+			}
+			set
+			{
+				if ((this._MaSP != value))
+				{
+					if (this._tbl_SanPham.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMaSPChanging(value);
+					this.SendPropertyChanging();
+					this._MaSP = value;
+					this.SendPropertyChanged("MaSP");
+					this.OnMaSPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TiLeGiam", DbType="Float")]
+		public System.Nullable<double> TiLeGiam
+		{
+			get
+			{
+				return this._TiLeGiam;
+			}
+			set
+			{
+				if ((this._TiLeGiam != value))
+				{
+					this.OnTiLeGiamChanging(value);
+					this.SendPropertyChanging();
+					this._TiLeGiam = value;
+					this.SendPropertyChanged("TiLeGiam");
+					this.OnTiLeGiamChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(50)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this.OnGhiChuChanging(value);
+					this.SendPropertyChanging();
+					this._GhiChu = value;
+					this.SendPropertyChanged("GhiChu");
+					this.OnGhiChuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="tbl_SanPham_GiamGia", Storage="_tbl_SanPham", ThisKey="MaSP", OtherKey="MaSanPham", IsForeignKey=true)]
+		public tbl_SanPham tbl_SanPham
+		{
+			get
+			{
+				return this._tbl_SanPham.Entity;
+			}
+			set
+			{
+				tbl_SanPham previousValue = this._tbl_SanPham.Entity;
+				if (((previousValue != value) 
+							|| (this._tbl_SanPham.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._tbl_SanPham.Entity = null;
+						previousValue.GiamGias.Remove(this);
+					}
+					this._tbl_SanPham.Entity = value;
+					if ((value != null))
+					{
+						value.GiamGias.Add(this);
+						this._MaSP = value.MaSanPham;
+					}
+					else
+					{
+						this._MaSP = default(string);
+					}
+					this.SendPropertyChanged("tbl_SanPham");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }

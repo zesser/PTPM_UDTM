@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DataSource" Class="DulieuDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-L492U4AI\TAIPD;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DataSourceConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLSanPham" Class="DulieuDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-L492U4AI\TAIPD;Initial Catalog=QLSanPham;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLSanPhamConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.tbl_ChiTietHD" Member="tbl_ChiTietHDs">
     <Type Name="tbl_ChiTietHD">
       <Column Name="MAHD" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -21,6 +21,7 @@
       <Column Name="MauSac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Association Name="tbl_SanPham_tbl_ChiTietHD" Member="tbl_ChiTietHDs" ThisKey="MaSanPham" OtherKey="MASP" Type="tbl_ChiTietHD" />
+      <Association Name="tbl_SanPham_GiamGia" Member="GiamGias" ThisKey="MaSanPham" OtherKey="MaSP" Type="GiamGia" />
       <Association Name="tbl_Loai_tbl_SanPham" Member="tbl_Loai" ThisKey="MaL" OtherKey="MaLoai" Type="tbl_Loai" IsForeignKey="true" />
       <Association Name="tbl_NhaSanXuat_tbl_SanPham" Member="tbl_NhaSanXuat" ThisKey="MaSX" OtherKey="MaNSX" Type="tbl_NhaSanXuat" IsForeignKey="true" />
     </Type>
@@ -66,6 +67,15 @@
       <Column Name="MaNhom" Type="System.String" DbType="NVarChar(50) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenNhom" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Association Name="tbl_Nhom_tbl_Loai" Member="tbl_Loais" ThisKey="MaNhom" OtherKey="Nhom" Type="tbl_Loai" />
+    </Type>
+  </Table>
+  <Table Name="dbo.GiamGia" Member="GiamGias">
+    <Type Name="GiamGia">
+      <Column Name="MaGiamGia" Type="System.String" DbType="NChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaSP" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TiLeGiam" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GhiChu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="tbl_SanPham_GiamGia" Member="tbl_SanPham" ThisKey="MaSP" OtherKey="MaSanPham" Type="tbl_SanPham" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

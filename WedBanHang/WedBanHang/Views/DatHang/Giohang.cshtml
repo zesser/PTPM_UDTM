@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Giohang";
+}
+@using WedBanHang.Models
+@model List<GioHang>
+<h2>Giohang</h2>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Mã sản phẩm</th>
+            <th scope="col">Số lượng</th>
+            <th scope="col">Đơn giá</th>
+            <th scope="col">Thành tiền</th>
+            <th scope="col">Deleta</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var i in Model)
+        {
+            <tr>
+                <th scope="row">@i.MaSP</th>
+                <td>
+                    <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=false})"><<</a>
+                    @i.Soluong
+                    <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=true})">>></a>
+                </td>
+                <td>@i.DonGia</td>
+                <td>@i.ThanhTien</td>
+                <td><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("DeleteSP",new {ma=i.MaSP })">Delete</a></td>
+            </tr>
+        }
+        <tr>
+            <td colspan="2">Tổng tiền : @ViewBag.Tongtien</td>
+            <td>
+                @if (Session["Giamgia"] == null)
+                {
+                <form action="@Url.Action("XuLyGiamGia")" method="post">
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                        Nhập mã giảm giá
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Mã giảm giá</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" name="txt_maGiamGia" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Xác nhận</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                }
+                else
+                {
+                    <button type="button" class="btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                        Nhập mã giảm giá
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Warnning</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    Bạn chỉ có thể sử dụng 1 mã giả giá cho 1 hóa đơn
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </td>
+            <td><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("DatHang","DatHang")">Đặt hàng</a></td>
+        </tr>
+    </tbody>
+</table>

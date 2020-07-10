@@ -1,0 +1,36 @@
+﻿
+@{ ViewBag.Title = "Register"; }
+<div class="container">
+    <h2>Register</h2>
+    <form action="@Url.Action("InsertUserToDatabase","UserActive")" method="post">
+        <div class="form-group">
+            <label for="user">User name:</label>
+            <input type="text" class="form-control" id="user" placeholder="Enter user name" name="txt_regUser">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password</label>
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_rePassword">
+        </div>
+        <div class="form-group">
+            <label for="pwd">Nhập lại Password:</label>
+            <input type="password" class="form-control" id="pwd" placeholder="re password" name="txt_rePassword2">
+        </div>
+        <div class="form-group">
+            <label for="name">Họ tên:</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter name" name="txt_Name">
+        </div>
+        <div class="form-group">
+            <label for="Address">Address:</label>
+            <input type="text" class="form-control" id="Address" placeholder="Enter Address" name="txt_Diachi">
+        </div>
+        <div class="form-group">
+            <label for="phone">Số điện thoại:</label>
+            <input type="number" class="form-control" id="phone" placeholder="Enter Phone" name="txt_Dienthoai">
+        </div>
+        <div class="form-group">
+            <label for="mail">Email:</label>
+            <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="txt_mail">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+</div>

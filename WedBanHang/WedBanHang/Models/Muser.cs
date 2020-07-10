@@ -7,8 +7,8 @@ namespace WedBanHang.Models
 {
     public class Muser
     {
-        public String Login { set; get; }
-        public String mUserName { set; get; }
-        public String mPassword { set; get; }
+        public String MaKH { set; get; }
+        public String TenKH { set; get; }
+        public String mUsername { set; get; }
     }
 }

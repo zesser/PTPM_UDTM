@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "testloi";
+}
+@{ 
+    List<string> lstImage = ViewBag.test;
+}
+<h1>loi</h1>
+<h1>@ViewBag.test</h1>
+<h1>@lstImage</h1>
+@foreach(var i in lstImage)
+{
+    <h1>@i</h1>
+}

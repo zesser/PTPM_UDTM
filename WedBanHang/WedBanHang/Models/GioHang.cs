@@ -9,6 +9,7 @@ namespace WedBanHang.Models
     {
         DulieuDataContext dulieu = new DulieuDataContext();
         public String MaSP { set; get; }
+        public String TenSP { set; get; }
         public String Hinh { set; get; }
         public int Soluong { set; get; }
 
@@ -20,6 +21,7 @@ namespace WedBanHang.Models
         public GioHang(String masp)
         {
             tbl_SanPham sp = dulieu.tbl_SanPhams.Single(s => s.MaSanPham == masp);
+            TenSP = sp.TenSP;
             MaSP = sp.MaSanPham;
             Hinh = sp.Hinh;
             Soluong = 1;
