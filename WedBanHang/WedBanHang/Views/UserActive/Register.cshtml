@@ -4,41 +4,70 @@
     <h2>Register</h2>
     <form action="@Url.Action("InsertUserToDatabase","UserActive")" method="post" name="myForm" onsubmit="return validateForm()">
         <div class="form-group">
-            <label for="demo" id="demo">User name:</label>
-            <input type="text" class="form-control" id="user" placeholder="Enter user name" name="txt_regUser" required>
+            <label for="demo" id="checkuser">User name(*)</label>
+            <input type="text" class="form-control" id="user" placeholder="Enter username" name="txt_regUser" required>
         </div>
         <div class="form-group">
-            <label for="pwd">Password</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_rePassword" required>
+            <label for="pwd" id="pw">Password(*)</label>
+            <input type="password" class="form-control" id="password1" placeholder="Enter password" name="txt_rePassword" required>
         </div>
         <div class="form-group">  
-            <label for="pwd">Nhập lại Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="re password" name="txt_rePassword2" required>
+            <label for="pwd" id="pw2">Nhập lại Password(*)</label>
+            <input type="password" class="form-control" id="password2" placeholder="re password" name="txt_rePassword2" required>
         </div>
         <div class="form-group">
-            <label for="name">Họ tên:</label>
+            <label for="name">Họ tên(*)</label>
             <input type="text" class="form-control" id="name" placeholder="Enter name" name="txt_Name" required>
         </div>
         <div class="form-group">
-            <label for="Address">Address:</label>
+            <label for="Address">Address</label>
             <input type="text" class="form-control" id="Address" placeholder="Enter Address" name="txt_Diachi">
         </div>
         <div class="form-group">
-            <label for="phone">Số điện thoại:</label>
-            <input type="tel" class="form-control" id="phone" placeholder="Enter Phone" name="txt_Dienthoai" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required>
+            <label for="phone">Số điện thoại(*)</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter Phone:0**********" name="txt_Dienthoai" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required>
         </div>
         <div class="form-group">
-            <label for="mail">Email:</label>
-            <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="txt_mail" required>
+            <label for="mail">Email(*)</label>
+            <input type="email" class="form-control" id="mail" placeholder="Enter Email:example@gmail.com" name="txt_mail" required>
         </div>
-        <button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
+        <button type="submit" class="btn btn-default">Submit</button>
     </form>
 </div>
 <script>
     function validateForm() {
         var x = document.forms["myForm"]["txt_regUser"].value;
-        if (isNaN(x)) {
-            document.getElementById("demo").innerHTML = "null";
+        if (x.length > 12 || x.length < 6) {
+            document.getElementById("checkuser").innerHTML = "lenght (6-12) character";
+            document.getElementById("checkuser").style.color = 'red';
+            return false;
+        } else {
+            document.getElementById("checkuser").innerHTML = "User name(*)";
+            document.getElementById("checkuser").style.color = 'black';
         }
+        var pw1 = document.forms["myForm"]["txt_rePassword"].value;
+        var pw2 = document.forms["myForm"]["txt_rePassword2"].value;
+        if (pw1.length < 8 || pw1.length > 12) {
+            document.getElementById("pw").innerHTML = "lenght (8-12) character";
+            document.getElementById("pw").style.color = 'red';
+            return false;
+        } else {
+            document.getElementById("pw").innerHTML = "Password(*)";
+            document.getElementById("pw").style.color = 'black';
+        }
+        if (pw1 != pw2) {
+            document.getElementById("pw").innerHTML = "the password is'nt mask to other";
+            document.getElementById("pw2").innerHTML = "the password is'nt mask to other";
+            document.getElementById("pw").style.color = 'red';
+            document.getElementById("pw2").style.color = 'red';
+            return false;
+        } else {
+            document.getElementById("pw").innerHTML = "Password(*)";
+            document.getElementById("pw2").innerHTML = "Nhập lại Password(*)";
+            document.getElementById("pw").style.color = 'black';
+            document.getElementById("pw2").style.color = 'black';
+            alert("success");
+        }
+        return true;
     }
 </script>

@@ -1,14 +1,17 @@
-﻿
-@{
-    ViewBag.Title = "testloi";
-}
-@{ 
-    List<string> lstImage = ViewBag.test;
-}
-<h1>loi</h1>
-<h1>@ViewBag.test</h1>
-<h1>@lstImage</h1>
-@foreach(var i in lstImage)
-{
-    <h1>@i</h1>
-}
+﻿<h2>My First Web Page</h2>
+<p>My First Paragraph.</p>
+<form action="#" method="post" name="myform" onsubmit="return myFunction()">
+    <p id="demo">demo</p>
+    <input type="text" name="txt" id="user" />
+    <input type="submit" value="submit"/>
+</form>
+
+<script>
+    function myFunction() {
+        var x = document.forms["myform"]["txt"].value;
+        if (x.length > 12 || x.length <6) {
+            document.getElementById("demo").innerHTML = "Khong duoc de trong";
+            return false;
+        }
+    }
+</script>

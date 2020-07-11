@@ -16,7 +16,7 @@ namespace WedBanHang
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "lstSanPham", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "testloi", id = UrlParameter.Optional }
             );
         }
     }

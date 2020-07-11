@@ -113,8 +113,7 @@ namespace WedBanHang.Controllers
         }
         public ActionResult testloi()
         {
-            List<string> lstImage = GetAllImageName();
-            return View(lstImage);
+            return View();
         }
     }
 }
