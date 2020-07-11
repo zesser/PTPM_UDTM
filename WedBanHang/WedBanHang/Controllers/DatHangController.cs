@@ -56,7 +56,7 @@ namespace WedBanHang.Controllers
             }
             if (select == 1)
                 return RedirectToAction("Giohang");//mua ngay
-            else return RedirectToAction("SanPham","Home", new { Ma = Ma });
+            else return RedirectToAction("SanPham","Home", new { Ma = Ma });// them gio hang
         }
         //Delete sp
         public ActionResult DeleteSP(String ma)
@@ -103,12 +103,12 @@ namespace WedBanHang.Controllers
         public ActionResult ThanhToan()
         {
             if (Session["UserDN"] == null)
-                return RedirectToAction("Login","Home");
+                return RedirectToAction("Login","UserActive");
             else
             {
                 List<GioHang> lstGioHang = LayGioHang();
-                tbl_HoaDon hoadon = new tbl_HoaDon();
-                tbl_ChiTietHD chitiethoadon = new tbl_ChiTietHD();
+                HOADON hoadon = new HOADON();
+                CHITIETHOADON chitiethoadon = new CHITIETHOADON();
             }
             return View();
         }
@@ -136,7 +136,7 @@ namespace WedBanHang.Controllers
                     Session["Giamgia"] = 1;
                 }
             }
-            return RedirectToAction("GioHang");
+            return RedirectToAction("HoaDon");
         }
         [HttpPost]
         public ActionResult XuatHoaDon(FormCollection col)

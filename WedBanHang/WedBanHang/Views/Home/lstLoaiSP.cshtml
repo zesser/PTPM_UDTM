@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WedBanHang.Models.tbl_Loai>
+﻿@model IEnumerable<WedBanHang.Models.LOAIHANG>
 @foreach (var item in Model) {
-    <a class="dropdown-item" href="@Url.Action("pageLoais",new {mLoai=item.MaLoai})">@item.TenLoai</a>
+    <a class="dropdown-item" href="@Url.Action("pageLoais",new {mLoai=item.MALOAI})">@item.TENLOAI</a>
 }

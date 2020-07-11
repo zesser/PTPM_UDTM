@@ -22,10 +22,13 @@ namespace WedBanHang.Controllers
             KHACHHANG tbl_Khach = dulieu.KHACHHANGs.FirstOrDefault(k => k.TENDN == col["txt_DangNhap"] && k.MATKHAU == col["txt_Password"]);
             if (tbl_Khach == null)
             {
-                return View("Register");
+                Session["ERROR_LOGIN"] = "SAI TÊN ĐĂNG NHẬP OR MẬT KHẨU";
+                return RedirectToAction("Login");
             }
             else
             {
+                if (Session["ERROR_LOGIN"] != null)
+                    Session["ERROR_LOGIN"] = null;
                 Session["UserDN"] = new Muser() { MaKH = tbl_Khach.MAKHACHHANG.ToString(), mUsername = tbl_Khach.TENDN, TenKH = tbl_Khach.TENKHACHHANG };
                 return RedirectToAction("lstSanPham", "Home");
             }
@@ -60,15 +63,26 @@ namespace WedBanHang.Controllers
             khachhang.DIACHI = diachind;
             khachhang.DIENTHOAI = sodienthoaind;
             khachhang.EMAIL = mailnd;
+            if (checkRegister(khachhang, password2) != true)
+                return RedirectToAction("Register");
             dulieu.KHACHHANGs.InsertOnSubmit(khachhang);
             dulieu.SubmitChanges();
             return RedirectToAction("Login");
+        }
+        public Boolean checkRegister(KHACHHANG kh,string pw)
+        {
+            KHACHHANG moi = dulieu.KHACHHANGs.FirstOrDefault(k => k.MATKHAU == kh.MATKHAU);
+            if ( moi!= null)
+                return false;
+            if (kh.MATKHAU != pw)
+                return false;
+            return true;
         }
         //Hiển thị dữ liệu khách hàng
         public ActionResult mUser(String Ma)
         {
             KHACHHANG khach = dulieu.KHACHHANGs.FirstOrDefault(k => k.MAKHACHHANG.ToString() == Ma);
-            List<HOADON> lstDataHoaDon = dulieu.HOADONs.Where(m => m.MAHD == Ma).ToList();
+            List<HOADON> lstDataHoaDon = dulieu.HOADONs.Where(m => m.MAKHACHHANG == Ma).ToList();
             List<HoaDon> lstHoaDon = new List<HoaDon>();
             foreach (var i in lstDataHoaDon)
             {
@@ -77,6 +91,12 @@ namespace WedBanHang.Controllers
             }
             ViewBag.HoaDon = khach.TENKHACHHANG;
             return View(lstHoaDon);
+        }
+        //Thông tin khách hàng
+        public ActionResult TTCT(String Ma)
+        {
+            KHACHHANG kh = dulieu.KHACHHANGs.FirstOrDefault(m => m.MAKHACHHANG == Ma);
+            return PartialView(kh);
         }
         //Đăng xuất
         public ActionResult mDangxuat()

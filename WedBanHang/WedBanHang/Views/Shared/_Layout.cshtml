@@ -14,16 +14,16 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand">Navbar</a>
+            <a class="navbar-brand">SUNNY</a>
             <div class="collapse navbar-collapse" id="NavbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link" href="@Url.Action("Index","Home")">Home<span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="@Url.Action("lstSanPham","Home")">Home<span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item dropdown mydropdowncss">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdown" role="button"
                            aria-haspopup="true" aria-expanded="false">
-                            Dropdown
+                            DANH SÁCH LOẠI
                         </a>
                         <div class="dropdown-menu">
                             @Html.Action("lstLoaiSP","Home")
@@ -38,7 +38,7 @@
                     <button class="btn btn-outline-success my-2 mr-sm-0" type="submit">Search</button>
                 </form>
                 <form class="form-inline my-2 my-lg-2">
-                    <a class="btn btn-outline-success my-2 mr-sm-0" href="@Url.Action("Giohang","Home")">Gio Hang</a>
+                    <a class="btn btn-outline-success my-2 mr-sm-0" href="@Url.Action("Giohang","DatHang")">Gio Hang</a>
                 </form>
                 <ul class="navbar-nav my-2 my-lg-2">
                     <li class="nav-item dropdown mydropdowncss">
@@ -73,7 +73,7 @@
         <div class="container">
             <div class="collapse navbar-collapse" id="NavbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
-                    @Html.Action("lstNhom","Home")
+                    @Html.Action("lstPHONG","Home")
                 </ul>
             </div>
         </div>

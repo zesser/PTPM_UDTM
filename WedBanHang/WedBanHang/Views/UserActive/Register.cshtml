@@ -2,22 +2,22 @@
 @{ ViewBag.Title = "Register"; }
 <div class="container">
     <h2>Register</h2>
-    <form action="@Url.Action("InsertUserToDatabase","UserActive")" method="post">
+    <form action="@Url.Action("InsertUserToDatabase","UserActive")" method="post" name="myForm" onsubmit="return validateForm()">
         <div class="form-group">
-            <label for="user">User name:</label>
-            <input type="text" class="form-control" id="user" placeholder="Enter user name" name="txt_regUser">
+            <label for="demo" id="demo">User name:</label>
+            <input type="text" class="form-control" id="user" placeholder="Enter user name" name="txt_regUser" required>
         </div>
         <div class="form-group">
             <label for="pwd">Password</label>
-            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_rePassword">
+            <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_rePassword" required>
         </div>
-        <div class="form-group">
+        <div class="form-group">  
             <label for="pwd">Nhập lại Password:</label>
-            <input type="password" class="form-control" id="pwd" placeholder="re password" name="txt_rePassword2">
+            <input type="password" class="form-control" id="pwd" placeholder="re password" name="txt_rePassword2" required>
         </div>
         <div class="form-group">
             <label for="name">Họ tên:</label>
-            <input type="text" class="form-control" id="name" placeholder="Enter name" name="txt_Name">
+            <input type="text" class="form-control" id="name" placeholder="Enter name" name="txt_Name" required>
         </div>
         <div class="form-group">
             <label for="Address">Address:</label>
@@ -25,12 +25,20 @@
         </div>
         <div class="form-group">
             <label for="phone">Số điện thoại:</label>
-            <input type="number" class="form-control" id="phone" placeholder="Enter Phone" name="txt_Dienthoai">
+            <input type="tel" class="form-control" id="phone" placeholder="Enter Phone" name="txt_Dienthoai" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required>
         </div>
         <div class="form-group">
             <label for="mail">Email:</label>
-            <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="txt_mail">
+            <input type="email" class="form-control" id="mail" placeholder="Enter Email" name="txt_mail" required>
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" onclick="myFunction()">Submit</button>
     </form>
 </div>
+<script>
+    function validateForm() {
+        var x = document.forms["myForm"]["txt_regUser"].value;
+        if (isNaN(x)) {
+            document.getElementById("demo").innerHTML = "null";
+        }
+    }
+</script>

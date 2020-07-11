@@ -1,0 +1,7 @@
+﻿@model IEnumerable<WedBanHang.Models.PHONG>
+@foreach (var item in Model)
+{
+    <li class="nav-item active">
+        <a class="nav-link" href="@Url.Action("pagePHONG",new {mPhong=item.MAPH})">@item.TENPHONG<span class="sr-only"></span></a>
+    </li>
+}

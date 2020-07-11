@@ -96,17 +96,37 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\Anh\101687691_146469747040460_122739041354383360_n.jpg" />
-    <Content Include="Models\Anh\3561716420480213454575853861059020806684672n-15510057259571546306615-crop-15510061168661940761135.jpg" />
-    <Content Include="Models\Anh\con-gai-han-quoc-cham-soc-da-1.jpg" />
-    <Content Include="Models\Anh\FB_android_icons.jpg" />
-    <Content Include="Models\Anh\gio hang.jpg" />
-    <Content Include="Models\Anh\girl\3561716420480213454575853861059020806684672n-15510057259571546306615-crop-15510061168661940761135.jpg" />
-    <Content Include="Models\Anh\girl\con-gai-han-quoc-cham-soc-da-1.jpg" />
-    <Content Include="Models\Anh\google_icon.jpg" />
-    <Content Include="Models\Anh\Jungle.jpg" />
-    <Content Include="Models\Anh\tải xuống.jpg" />
-    <Content Include="Models\Anh\user.jpg" />
+    <Content Include="Models\anhsp\banartigo.JPG" />
+    <Content Include="Models\anhsp\banconsoleartmarble.JPG" />
+    <Content Include="Models\anhsp\bandaugiuongshadow.JPG" />
+    <Content Include="Models\anhsp\bandaugiuongskagen.JPG" />
+    <Content Include="Models\anhsp\banGheGoSoi.JPG" />
+    <Content Include="Models\anhsp\banGhePC.JPG" />
+    <Content Include="Models\anhsp\banMaxine.JPG" />
+    <Content Include="Models\anhsp\banTouka.JPG" />
+    <Content Include="Models\anhsp\bantrangdiemvadonHarmony.JPG" />
+    <Content Include="Models\anhsp\gheBri.JPG" />
+    <Content Include="Models\anhsp\gheKhongTay.JPG" />
+    <Content Include="Models\anhsp\giuongShadow1m8.JPG" />
+    <Content Include="Models\anhsp\giuongSkagen1m6.JPG" />
+    <Content Include="Models\anhsp\keGoPB01.JPG" />
+    <Content Include="Models\anhsp\keGoPB02.JPG" />
+    <Content Include="Models\anhsp\keSachGamma.JPG" />
+    <Content Include="Models\anhsp\keSachMaxine.JPG" />
+    <Content Include="Models\anhsp\ketrangtrieden.JPG" />
+    <Content Include="Models\anhsp\sofagocphaiUrbandaBrown.JPG" />
+    <Content Include="Models\anhsp\sofaJazz3chodanau.JPG" />
+    <Content Include="Models\anhsp\tuamtuongkiwi.JPG" />
+    <Content Include="Models\anhsp\tuaokiwi.JPG" />
+    <Content Include="Models\anhsp\tuBepMoka.JPG" />
+    <Content Include="Models\anhsp\tuBepViVo.JPG" />
+    <Content Include="Models\anhsp\tugiaychinotrang.JPG" />
+    <Content Include="Models\anhsp\tuhockeo.JPG" />
+    <Content Include="Models\anhsp\tusachaddict.JPG" />
+    <Content Include="Models\anhsp\tutivimay.JPG" />
+    <Content Include="Models\anhsp\tutivisecret.JPG" />
+    <Content Include="Models\anhsp\tuTrangTri01.JPG" />
+    <Content Include="Models\anhsp\tuTrangTri02.JPG" />
     <Content Include="Models\Icon\menu.svg" />
     <Content Include="Models\Icon\person.svg" />
     <Content Include="Scripts\css\bootstrap-grid.css.map" />
@@ -160,11 +180,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ChiTietHoaDon.cs" />
-    <Compile Include="Models\Dulieu.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Dulieu.dbml</DependentUpon>
-    </Compile>
     <Compile Include="Models\GioHang.cs" />
     <Compile Include="Models\HoaDon.cs" />
     <Compile Include="Models\Muser.cs" />
@@ -185,14 +200,6 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
-    <Content Include="Models\Dulieu.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>Dulieu.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
-    <None Include="Models\Dulieu.dbml.layout">
-      <DependentUpon>Dulieu.dbml</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -202,10 +209,11 @@
     <Content Include="Views\DatHang\Giohang.cshtml" />
     <Content Include="Views\UserActive\mUser.cshtml" />
     <Content Include="Views\Home\lstLoaiSP.cshtml" />
-    <Content Include="Views\Home\lstNhom.cshtml" />
     <Content Include="Views\DatHang\Dathang.cshtml" />
     <Content Include="Views\Home\test.cshtml" />
     <Content Include="Views\Home\testloi.cshtml" />
+    <Content Include="Views\Home\lstPHONG.cshtml" />
+    <Content Include="Views\UserActive\TTCT.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

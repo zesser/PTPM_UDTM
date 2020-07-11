@@ -7,18 +7,17 @@ namespace WedBanHang.Models
 {
     public class ChiTietHoaDon
     {
-        DulieuDataContext dulieu = new DulieuDataContext();
+        QLBanDoGoDataContext dulieu = new QLBanDoGoDataContext();
         public int maHoaDon { get; set; }
         public string maSanPham { get; set; }
         public int SoLuong { get; set; }
         public ChiTietHoaDon() { }
-        public ChiTietHoaDon(int maHoaDon,string maSp)
+        public ChiTietHoaDon(String maHoaDon,string maSp)
         {
-            tbl_ChiTietHD chitiet = dulieu.tbl_ChiTietHDs.FirstOrDefault(m => m.MAHD == (int)maHoaDon && m.MASP == maSp);
+            CHITIETHOADON chitiet = dulieu.CHITIETHOADONs.FirstOrDefault(m => m.MAHD == maHoaDon && m.MASP == maSp);
             maHoaDon =chitiet.MAHD;
             maSanPham = chitiet.MASP;
             SoLuong = (int)chitiet.SOLUONG;
         }
-        
     }
 }

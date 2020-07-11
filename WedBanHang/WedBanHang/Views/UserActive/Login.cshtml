@@ -1,18 +1,26 @@
 ﻿
 @{ ViewBag.Title = "Login"; }
     <div class="container">
-        <h2>Vertical (basic) form</h2>
+        <h2>LOGIN</h2>
         <form action="@Url.Action("XulyLogin","UserActive")" method="post">
             <div class="form-group">
                 <label for="username">Username:</label>
-                <input type="text" class="form-control" id="username" placeholder="Enter name" name="txt_DangNhap">
+                <input type="text" class="form-control" id="username" placeholder="Enter name" name="txt_DangNhap" required>
             </div>
             <div class="form-group">
                 <label for="pwd">Password:</label>
-                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_Password">
+                <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="txt_Password" required>
             </div>
             <div class="checkbox">
                 <label><input type="checkbox" name="remember"> Remember me</label>
+            </div>
+            <div>
+                @{ 
+                    if (Session["ERROR_LOGIN"] != null)
+                    {
+                        <a style="color:red">@Session["ERROR_LOGIN"]</a>
+                    }     
+                }
             </div>
             <button type="submit" class="btn btn-default">Login</button>
         </form>

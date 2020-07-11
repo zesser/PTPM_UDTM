@@ -14,11 +14,11 @@ namespace WedBanHang.Controllers
 {
     public class HomeController : Controller
     {
-        DulieuDataContext dulieu = new DulieuDataContext();
+        QLBanDoGoDataContext dulieu = new QLBanDoGoDataContext();
         // GET: Home
         public ActionResult lstSanPham()
         {
-            List<tbl_SanPham>lstsanpham = dulieu.tbl_SanPhams.ToList();
+            List<SANPHAM>lstsanpham = dulieu.SANPHAMs.ToList();
             if (lstsanpham == null)
                 return Redirect("testloi");
             Session["lsSanPham"] = lstsanpham;
@@ -26,7 +26,7 @@ namespace WedBanHang.Controllers
         }
         public ActionResult Index()
         {
-            List<tbl_SanPham> lstSanPhams = Session["lsSanPham"] as List<tbl_SanPham>;
+            List<SANPHAM> lstSanPhams = Session["lsSanPham"] as List<SANPHAM>;
             return View(lstSanPhams);
         }
         //Get all image in folder
@@ -66,7 +66,7 @@ namespace WedBanHang.Controllers
         //GET: 1 San Pham
         public ActionResult SanPham(String Ma)
         {
-            tbl_SanPham sanPham = dulieu.tbl_SanPhams.FirstOrDefault(sp => sp.MaSanPham == Ma);
+            SANPHAM sanPham = dulieu.SANPHAMs.FirstOrDefault(sp => sp.MASP == Ma);
             return View(sanPham);
         }      
         //Tìm kiếm
@@ -74,46 +74,40 @@ namespace WedBanHang.Controllers
         public ActionResult Search(FormCollection col)
         {
             String keySearch = col["txtseach"];
-            List<tbl_SanPham> lst = dulieu.tbl_SanPhams.Take(8).ToList();
-            List<tbl_SanPham> sanPhams =lst.Where(sp => sp.MaL.Contains(keySearch)).ToList();
+            List<SANPHAM> lst = dulieu.SANPHAMs.Take(8).ToList();
+            List<SANPHAM> sanPhams =lst.Where(sp => sp.TENSP.Contains(keySearch)).ToList();
             Session["lsSanPham"] = sanPhams;
-            return View(sanPhams);
+            return RedirectToAction("Index","Home");
         }
         //Loại sản phẩm
         public PartialViewResult lstLoaiSP()
         {
-            List<tbl_Loai> loais = dulieu.tbl_Loais.ToList();
+            List<LOAIHANG> loais = dulieu.LOAIHANGs.ToList();
             return PartialView(loais);
         }
         //Load ds theo Loai
         public ActionResult pageLoais(String mLoai)
         {
-            List<tbl_SanPham> SanPhams = dulieu.tbl_SanPhams.Where(sp => sp.MaL == mLoai).ToList();
+            List<SANPHAM> SanPhams = dulieu.SANPHAMs.Where(sp => sp.MALOAI == mLoai).ToList();
             Session["lsSanPham"] = SanPhams;
             return RedirectToAction("Index");
         }
         //Nhóm sản phẩm
-        public PartialViewResult lstNhom()
+        public PartialViewResult lstPHONG()
         {
-            List<tbl_Nhom> lstNhom = dulieu.tbl_Nhoms.ToList();
+            List<PHONG> lstNhom = dulieu.PHONGs.ToList();
             return PartialView(lstNhom);
         }
         //load ds theo Nhom
-        public ActionResult pageNhoms(String mNhom)
+        public ActionResult pagePHONG(String mPhong)
         {
-            List<tbl_Loai> lstloais = dulieu.tbl_Loais.Where(sp => sp.Nhom == mNhom).ToList();
-            List<tbl_SanPham> SanPhams = new List<tbl_SanPham>();
-            foreach (var i in lstloais)
-            {
-                List<tbl_SanPham> sanpham = dulieu.tbl_SanPhams.Where(sp => sp.MaL == i.MaLoai).ToList();
-                SanPhams.AddRange(sanpham);
-            }
-            Session["lsSanPham"] = SanPhams;
-            return RedirectToAction("Index",SanPhams);
+            List<SANPHAM> SanPhams = dulieu.SANPHAMs.Where(sp => sp.MAPH == mPhong).ToList();
+            Session["lsSanPham"] = SanPhams as List<SANPHAM>;
+            return RedirectToAction("Index");
         }
         public ActionResult test(string ma)
         {
-            tbl_SanPham sp = dulieu.tbl_SanPhams.FirstOrDefault(s => s.MaSanPham == ma);
+            SANPHAM sp = dulieu.SANPHAMs.FirstOrDefault(s => s.MASP == ma);
             List<string> lstImage = GetAllImageName();
             return PartialView(lstImage);
         }

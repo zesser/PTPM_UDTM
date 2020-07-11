@@ -7,7 +7,7 @@ namespace WedBanHang.Models
 {
     public class HoaDon
     {
-        DulieuDataContext dulieu = new DulieuDataContext();
+        QLBanDoGoDataContext dulieu = new QLBanDoGoDataContext();
         public string maHoaDon { get; set; }
         public string maKhachHang { get; set; }
         public string ngayTao { get; set; }
@@ -16,11 +16,11 @@ namespace WedBanHang.Models
 
         public HoaDon(string ma)
         {
-            tbl_HoaDon hoaDon = dulieu.tbl_HoaDons.FirstOrDefault(m => m.MaHoaDon == Int16.Parse(ma));
-            maHoaDon = hoaDon.MaHoaDon.ToString();
-            maKhachHang = hoaDon.MaKH.ToString();
-            ngayTao = hoaDon.NgayTao.ToString();
-            List<tbl_ChiTietHD> lstchitiet = dulieu.tbl_ChiTietHDs.Where(c => c.MAHD == Int16.Parse(maHoaDon)).ToList();
+            HOADON hoaDon = dulieu.HOADONs.FirstOrDefault(m => m.MAHD == ma);
+            maHoaDon = hoaDon.MAHD.ToString();
+            maKhachHang = hoaDon.MAHD.ToString();
+            ngayTao = hoaDon.NGAYLAP.ToString();
+            List<CHITIETHOADON> lstchitiet = dulieu.CHITIETHOADONs.Where(c => c.MAHD == maHoaDon).ToList();
             chitiet = new List<ChiTietHoaDon>();
             foreach(var i in lstchitiet)
             {

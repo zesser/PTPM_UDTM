@@ -7,7 +7,7 @@ namespace WedBanHang.Models
 {
     public class GioHang
     {
-        DulieuDataContext dulieu = new DulieuDataContext();
+        QLBanDoGoDataContext dulieu = new QLBanDoGoDataContext();
         public String MaSP { set; get; }
         public String TenSP { set; get; }
         public String Hinh { set; get; }
@@ -20,12 +20,12 @@ namespace WedBanHang.Models
 
         public GioHang(String masp)
         {
-            tbl_SanPham sp = dulieu.tbl_SanPhams.Single(s => s.MaSanPham == masp);
-            TenSP = sp.TenSP;
-            MaSP = sp.MaSanPham;
-            Hinh = sp.Hinh;
+            SANPHAM sp = dulieu.SANPHAMs.Single(s => s.MASP == masp);
+            TenSP = sp.TENSP;
+            MaSP = sp.MASP;
+            Hinh = sp.ANHSP;
             Soluong = 1;
-            DonGia = Double.Parse(sp.Gia.ToString());
+            DonGia = Double.Parse(sp.GIA.ToString());
         }
     }
 }
