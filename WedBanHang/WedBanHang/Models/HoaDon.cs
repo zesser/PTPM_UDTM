@@ -18,7 +18,7 @@ namespace WedBanHang.Models
         {
             HOADON hoaDon = dulieu.HOADONs.FirstOrDefault(m => m.MAHD == ma);
             maHoaDon = hoaDon.MAHD.ToString();
-            maKhachHang = hoaDon.MAHD.ToString();
+            maKhachHang = hoaDon.MAKHACHHANG.ToString();
             ngayTao = hoaDon.NGAYLAP.ToString();
             List<CHITIETHOADON> lstchitiet = dulieu.CHITIETHOADONs.Where(c => c.MAHD == maHoaDon).ToList();
             chitiet = new List<ChiTietHoaDon>();

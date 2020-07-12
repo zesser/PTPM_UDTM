@@ -1,17 +1,12 @@
 ﻿<h2>My First Web Page</h2>
 <p>My First Paragraph.</p>
-<form action="#" method="post" name="myform" onsubmit="return myFunction()">
-    <p id="demo">demo</p>
-    <input type="text" name="txt" id="user" />
-    <input type="submit" value="submit"/>
+<script src="~/Scripts/js/JavaScript.js"></script>
+<form name="myForm" action="#" onsubmit="return validateForm()">
+    <ul>
+        <li><input type='text' name='text1' /></li>
+        <li>&nbsp;</li>
+        <li class="submit"><input type="submit" name="submit" value="Submit" /></li>
+        <li>&nbsp;</li>
+    </ul>
 </form>
-
-<script>
-    function myFunction() {
-        var x = document.forms["myform"]["txt"].value;
-        if (x.length > 12 || x.length <6) {
-            document.getElementById("demo").innerHTML = "Khong duoc de trong";
-            return false;
-        }
-    }
-</script>
+<script src="~/Scripts/js/JavaScript.js"></script>

@@ -1,68 +1,34 @@
-﻿@model WedBanHang.Models.KHACHHANG
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>KHACHHANG</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.TENDN, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TENDN, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TENDN, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.MATKHAU, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.MATKHAU, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.TENKHACHHANG, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.DIENTHOAI, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DIENTHOAI, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.DIENTHOAI, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+﻿
+@{
+    ViewBag.Title = "TTCT";
 }
-<div>
-    @Html.ActionLink("mUser", "UserActive")
-</div>
+@using WedBanHang.Models
+@model KHACHHANG 
+    <div class="container">
+        <h2>Xin chào khách hàng @Model.TENKHACHHANG</h2><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mDangxuat")">Đăng xuất</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mUser")">Hóa Đơn</a>
+        <form action="@Url.Action("UpdateKH","UserActive")" method="post" name="myForm" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label for="namedn" id="checkuser">User name(*)</label>
+                <input type="text" class="form-control" id="namedn" value="@Model.TENDN" name="txt_Name" disabled>
+            </div>
+            <div class="form-group">
+                <label for="name">Họ tên(*)</label>
+                <input type="text" class="form-control" id="name" value="@Model.TENKHACHHANG" name="txt_Name" required>
+            </div>
+            <div class="form-group">
+                <label for="Address">Address</label>
+                <input type="text" class="form-control" id="Address" value="@Model.DIACHI" name="txt_Diachi">
+            </div>
+            <div class="form-group">
+                <label for="phone">Số điện thoại(*)</label>
+                <input type="tel" class="form-control" id="phone" value="@Model.DIENTHOAI" name="txt_Dienthoai" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required>
+            </div>
+            <div class="form-group">
+                <label for="resultemail" id="email">Email(*)</label>
+                <input type="email" class="form-control" id="email" value="@Model.EMAIL" name="txt_mail" required>
+            </div>
+            <button type="submit" class="btn btn-default" id="validate">Update</button><a style="color:red">@Session["checkloi"]</a>
+        </form>
+    </div>
+

@@ -8,7 +8,7 @@
     <h2>THÔNG TIN THANH TOÁN</h2>
     <div class="row">
         <div class="col-sm-6">
-            <form action="/action_page.php" class="needs-validation" novalidate>
+            <form action="/action_page.php" class="needs-validation" novalidate method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="firstname">Họ tên lót(*)</label>
@@ -35,19 +35,6 @@
                     <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone number" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required>
                     <div class="invalid-feedback">Please fill your phone out this field.</div>
                 </div>
-                <div class="form-group">
-                    <label for="Thanhtoan">Hình thức thanh toán</label>
-                    <div class="radio" required>
-                        <label><input type="radio" name="optradio" checked>Trực tiếp</label>
-                    </div>
-                    <div class="radio">
-                        <label><input type="radio" name="optradio" data-toggle="collapse" data-target="#ThanhToanThe">Thẻ</label>
-                        <div id="ThanhToanThe" class="collapse">
-                            <input type="text" name="maThe" placeholder="Nhập mã thẻ tính dụng" />
-                        </div>
-                    </div>
-                    <div class="invalid-feedback">Please Check your form of payment</div>
-                </div>
                 <div class="form-group form-check">
                     <label class="form-check-label">
                         <input class="form-check-input" type="checkbox" name="remember" required><a>I agree.</a>
@@ -73,7 +60,7 @@
                 }
                 <tr>
                     <td colspan="2">
-                        <form action="" method="post">
+                        <form action="@Url.Action("XuLyGiamGia")" method="post">
                             <h5>Nhập Mã Giảm Giá</h5>
                             <input type="text" name="magiamgia"/>
                             <button type="submit"class="btn btn-primary">Xác Nhận</button>

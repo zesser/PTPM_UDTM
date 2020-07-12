@@ -8,7 +8,7 @@ namespace WedBanHang.Models
     public class ChiTietHoaDon
     {
         QLBanDoGoDataContext dulieu = new QLBanDoGoDataContext();
-        public int maHoaDon { get; set; }
+        public string maHoaDon { get; set; }
         public string maSanPham { get; set; }
         public int SoLuong { get; set; }
         public ChiTietHoaDon() { }

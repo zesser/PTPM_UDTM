@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 using WedBanHang.Models;
@@ -63,20 +64,40 @@ namespace WedBanHang.Controllers
             khachhang.DIACHI = diachind;
             khachhang.DIENTHOAI = sodienthoaind;
             khachhang.EMAIL = mailnd;
-            if (checkRegister(khachhang, password2) != true)
+            if (checkRegister(khachhang) != true)
                 return RedirectToAction("Register");
             dulieu.KHACHHANGs.InsertOnSubmit(khachhang);
             dulieu.SubmitChanges();
             return RedirectToAction("Login");
         }
-        public Boolean checkRegister(KHACHHANG kh,string pw)
+        public Boolean checkRegister(KHACHHANG kh)
         {
-            KHACHHANG moi = dulieu.KHACHHANGs.FirstOrDefault(k => k.MATKHAU == kh.MATKHAU);
+            KHACHHANG moi = dulieu.KHACHHANGs.FirstOrDefault(k => k.TENDN == kh.TENDN);
+            Session["checkloi"] = "";
             if ( moi!= null)
+            {
+                Session["checkloi"] = "Tên Đăng Nhập Đã Tồn Tại";
                 return false;
-            if (kh.MATKHAU != pw)
+            }
+            if (!isEmail(kh.EMAIL))
+            {
+                Session["checkloi"] = "email Không Hợp Lệ";
                 return false;
+            }
+            Session["checkloi"] = "";
             return true;
+        }
+        public static bool isEmail(string inputEmail)
+        {
+            inputEmail = inputEmail ?? string.Empty;
+            string strRegex = @"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
+                  @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
+                  @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$";
+            Regex re = new Regex(strRegex);
+            if (re.IsMatch(inputEmail))
+                return (true);
+            else
+                return (false);
         }
         //Hiển thị dữ liệu khách hàng
         public ActionResult mUser(String Ma)
@@ -86,17 +107,44 @@ namespace WedBanHang.Controllers
             List<HoaDon> lstHoaDon = new List<HoaDon>();
             foreach (var i in lstDataHoaDon)
             {
-                HoaDon hdon = new HoaDon(i.MAHD.ToString());
+                HoaDon hdon = new HoaDon(i.MAHD);
                 lstHoaDon.Add(hdon);
             }
             ViewBag.HoaDon = khach.TENKHACHHANG;
             return View(lstHoaDon);
         }
         //Thông tin khách hàng
-        public ActionResult TTCT(String Ma)
+        [HttpGet]
+        public ActionResult TTCT()
         {
-            KHACHHANG kh = dulieu.KHACHHANGs.FirstOrDefault(m => m.MAKHACHHANG == Ma);
-            return PartialView(kh);
+            Muser user = Session["UserDN"] as Muser;
+            KHACHHANG kh = dulieu.KHACHHANGs.FirstOrDefault(m => m.MAKHACHHANG == user.MaKH);
+            return View(kh);
+        }
+        //update thong tin khách hàng
+        [HttpPost]
+        public ActionResult UpdateKH(FormCollection col)
+        {
+            var Ten = col["txt_Name"];
+            var DiaChi = col["txt_Diachi"];
+            var DienThoai = col["txt_Dienthoai"];
+            var Email = col["txt_mail"];
+            Muser user = Session["UserDN"] as Muser;
+            KHACHHANG kh = dulieu.KHACHHANGs.FirstOrDefault(k => k.MAKHACHHANG == user.MaKH);
+            kh.TENKHACHHANG = Ten;
+            kh.DIACHI = DiaChi;
+            kh.DIENTHOAI = DienThoai;
+            kh.EMAIL = Email;
+            if (!isEmail(Email))
+            {
+                Session["checkloi"] = "email Không Hợp Lệ";
+                return RedirectToAction("TTCT");
+            }
+                
+            dulieu.SubmitChanges();
+            kh = dulieu.KHACHHANGs.FirstOrDefault(k => k.MAKHACHHANG == user.MaKH);
+            Session["checkloi"] = "";
+            return RedirectToAction("TTCT");
         }
         //Đăng xuất
         public ActionResult mDangxuat()

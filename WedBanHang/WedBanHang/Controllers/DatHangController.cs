@@ -94,29 +94,27 @@ namespace WedBanHang.Controllers
         [HttpGet]
         public ActionResult Dathang()
         {
-            List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
+            List<GioHang> lstGioHang = LayGioHang();
             if (Session["UserDN"] == null)
                 return RedirectToAction("Login","UserActive");
             return View(lstGioHang);
         }
         //Thanh toan
-        public ActionResult ThanhToan()
+        [HttpPost]
+        public ActionResult ThanhToan(FormCollection col)
         {
-            if (Session["UserDN"] == null)
-                return RedirectToAction("Login","UserActive");
-            else
-            {
-                List<GioHang> lstGioHang = LayGioHang();
-                HOADON hoadon = new HOADON();
-                CHITIETHOADON chitiethoadon = new CHITIETHOADON();
-            }
+            var name = col["firstname"] +" "+ col["lastname"];
+            var ngaynhan = col["day"];
+            var diachi = col["address"];
+            var dienthoai = col["phone"];
+
             return View();
         }
         //cặp nhật giảm giá
         [HttpPost]
         public ActionResult XuLyGiamGia(FormCollection col)
         {
-            var giam = col["txt_maGiamGia"];
+            var giam = col["magiamgia"];
             List<GioHang> lstGiohang = LayGioHang();
             MAGIAMGIA giams = dulieu.MAGIAMGIAs.FirstOrDefault(g => g.MAGIAMGIA1 == giam);
             GioHang hang = lstGiohang.FirstOrDefault(l => l.MaSP == giams.MASP);
@@ -136,7 +134,7 @@ namespace WedBanHang.Controllers
                     Session["Giamgia"] = 1;
                 }
             }
-            return RedirectToAction("HoaDon");
+            return RedirectToAction("Dathang");
         }
         [HttpPost]
         public ActionResult XuatHoaDon(FormCollection col)

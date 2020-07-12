@@ -76,6 +76,8 @@ namespace WedBanHang.Controllers
             String keySearch = col["txtseach"];
             List<SANPHAM> lst = dulieu.SANPHAMs.Take(8).ToList();
             List<SANPHAM> sanPhams =lst.Where(sp => sp.TENSP.Contains(keySearch)).ToList();
+            if (sanPhams.Count == 0)
+                return View();
             Session["lsSanPham"] = sanPhams;
             return RedirectToAction("Index","Home");
         }
