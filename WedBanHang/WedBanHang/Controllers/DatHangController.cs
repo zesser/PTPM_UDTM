@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using WedBanHang.Models;
 
 namespace WedBanHang.Controllers
@@ -107,8 +108,51 @@ namespace WedBanHang.Controllers
             var ngaynhan = col["day"];
             var diachi = col["address"];
             var dienthoai = col["phone"];
-
-            return View();
+            HOADON hd = new HOADON();
+            Muser user = Session["UserDN"] as Muser;
+            hd.MAHD = "HD";
+            hd.NGAYLAP = DateTime.Today;
+            hd.TENKHACHHANG = name;
+            hd.DIACHIGIAOHANG = diachi;
+            hd.SDTGIAOHANG = dienthoai;
+            hd.MAKHACHHANG = user.MaKH;
+            var chietkhau = 0.0;
+            var msp = "";
+            if (Session["Giamgia"] != null)
+            {
+                chietkhau = double.Parse(dulieu.MAGIAMGIAs.FirstOrDefault(m => m.MAGIAMGIA1 == Session["Giamgia"]).TILEGIAM);
+                msp = dulieu.MAGIAMGIAs.FirstOrDefault(m => m.MAGIAMGIA1 == Session["Giamgia"]).MASP;
+                hd.CHIETKHAU = chietkhau/10.0 * (double)dulieu.SANPHAMs.FirstOrDefault(s => s.MASP == msp).GIA;
+            }
+            hd.THANHTIEN = (decimal?)TongTien();
+            dulieu.HOADONs.InsertOnSubmit(hd);
+            dulieu.SubmitChanges();
+            ViewBag.TongTien=TongTien();
+            List<HOADON> mahh = dulieu.HOADONs.Where(h => h.MAKHACHHANG == user.MaKH && h.TENKHACHHANG == name && h.NGAYLAP == DateTime.Today).ToList();
+            HOADON mah = mahh.Last();
+            string mahd = mah.MAHD;
+            List<GioHang> lstGioHang = LayGioHang();
+            foreach(GioHang i in lstGioHang)
+            {
+                CHITIETHOADON ct = dulieu.CHITIETHOADONs.FirstOrDefault(c=>c.MAHD==mahd && c.MASP==i.MaSP);
+                if (ct == null)
+                {
+                    ct = new CHITIETHOADON();
+                    ct.MAHD = mahd;
+                    ct.MASP = i.MaSP;
+                    ct.SOLUONG = i.Soluong;
+                    ct.DONGIA = (decimal?)i.DonGia;
+                    ct.TONGTIEN = (decimal?)i.ThanhTien;
+                    dulieu.CHITIETHOADONs.InsertOnSubmit(ct);
+                }
+                else
+                {
+                    ct.SOLUONG = i.Soluong+ct.SOLUONG;
+                    ct.TONGTIEN = (decimal?)i.ThanhTien+ct.TONGTIEN;
+                }
+                dulieu.SubmitChanges();
+            }
+            return View(hd);
         }
         //cặp nhật giảm giá
         [HttpPost]
@@ -117,29 +161,49 @@ namespace WedBanHang.Controllers
             var giam = col["magiamgia"];
             List<GioHang> lstGiohang = LayGioHang();
             MAGIAMGIA giams = dulieu.MAGIAMGIAs.FirstOrDefault(g => g.MAGIAMGIA1 == giam);
+            if (giams == null)
+            {
+                Session["checkloi"] = "mã giảm giá không tồn tại!";
+                return RedirectToAction("Dathang");
+            }
             GioHang hang = lstGiohang.FirstOrDefault(l => l.MaSP == giams.MASP);
             if (Session["Giamgia"] == null)
             {
                 if (hang != null)
                 {
                     if (hang.Soluong == 1)
-                        hang.DonGia = (double)hang.DonGia - hang.DonGia * double.Parse(giams.TILEGIAM);
+                    {
+                        hang.DonGia = (double)hang.DonGia - (hang.DonGia * (double.Parse(giams.TILEGIAM)/10.0));
+                        Session["checkloi"] = "";
+                    }    
                     else
                     {
                         hang.Soluong--;
                         GioHang hang2 = new GioHang(hang.MaSP);
-                        hang2.DonGia = (double)hang.DonGia - hang.DonGia * double.Parse(giams.TILEGIAM);
+                        hang2.DonGia = (double)hang.DonGia - hang.DonGia * (double.Parse(giams.TILEGIAM) / 10.0);
                         lstGiohang.Add(hang2);
+                        Session["checkloi"] = "";
                     }
-                    Session["Giamgia"] = 1;
+                    Session["Giamgia"] = giam;
                 }
+                else
+                {
+                    Session["checkloi"] = "mã giảm giá không phù hợp mới sản phẩm bạn mua!";
+                    Session["Giamgia"] = "";
+                }
+            }
+            else
+            {
+                Session["checkloi"] = "Không thể nhập quá 2 mã giảm giá!";
             }
             return RedirectToAction("Dathang");
         }
-        [HttpPost]
-        public ActionResult XuatHoaDon(FormCollection col)
+        public ActionResult XuLyEnd()
         {
-            return View();
+            Session["GioHang"] = null;
+            Session["Giamgia"] = null;
+            Session["checkloi"] = null;
+            return RedirectToAction("lstSanPham","Home");
         }
     }
 }

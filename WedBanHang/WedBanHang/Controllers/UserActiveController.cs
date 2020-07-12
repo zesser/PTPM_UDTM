@@ -52,12 +52,12 @@ namespace WedBanHang.Controllers
             var diachind = col["txt_Diachi"];
             var sodienthoaind = col["txt_Dienthoai"];
             var mailnd = col["txt_mail"];
-            List<KHACHHANG> lstmakh = dulieu.KHACHHANGs.ToList();
+            /*List<KHACHHANG> lstmakh = dulieu.KHACHHANGs.ToList();
             string makh = lstmakh.LastOrDefault().MAKHACHHANG;
             String[] ma = makh.Split('K', 'H');
             int stt = Int16.Parse(ma[2]) + 1;
-            makh = "KH" + stt;
-            khachhang.MAKHACHHANG = makh;
+            makh = "KH" + stt;*/
+            khachhang.MAKHACHHANG = "KH";
             khachhang.TENDN = tendn;
             khachhang.MATKHAU = password1;
             khachhang.TENKHACHHANG = tennd;

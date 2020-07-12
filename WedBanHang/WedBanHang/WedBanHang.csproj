@@ -216,6 +216,7 @@
     <Content Include="Views\Home\lstPHONG.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\UserActive\TTCT.cshtml" />
+    <Content Include="Views\DatHang\ThanhToan.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

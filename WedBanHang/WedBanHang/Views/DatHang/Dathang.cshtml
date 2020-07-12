@@ -8,7 +8,7 @@
     <h2>THÔNG TIN THANH TOÁN</h2>
     <div class="row">
         <div class="col-sm-6">
-            <form action="/action_page.php" class="needs-validation" novalidate method="post">
+            <form action="@Url.Action("ThanhToan","DatHang")" method="post">
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="firstname">Họ tên lót(*)</label>
@@ -64,6 +64,7 @@
                             <h5>Nhập Mã Giảm Giá</h5>
                             <input type="text" name="magiamgia"/>
                             <button type="submit"class="btn btn-primary">Xác Nhận</button>
+                            <div style="color:red"> @Session["checkloi"]</div>
                         </form>
                     </td>
                 </tr>
