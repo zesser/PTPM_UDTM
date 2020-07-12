@@ -67,15 +67,70 @@ namespace WedBanHang.Controllers
         public ActionResult SanPham(String Ma)
         {
             SANPHAM sanPham = dulieu.SANPHAMs.FirstOrDefault(sp => sp.MASP == Ma);
+            ViewBag.slSP = dulieu.KHOHANGs.FirstOrDefault(k => k.MASP == Ma).SOLUONG;
             return View(sanPham);
         }      
+        //Chuyển đổi chữ hoa thành chữ thường
+        public static string UpperToLower(string str)
+        {
+            string chuoi = "";
+            foreach (char i in str)
+            {
+                if (char.IsUpper(i))
+                    chuoi += char.ToLower(i) + "";
+                else
+                {
+                    chuoi += i + "";
+                }
+            }
+            return chuoi;
+        }
+        //chuyển ký tự đặt biệt sang ký tự thường
+        private static readonly string[] VietNamChar = new string[]
+        {
+        "aAeEoOuUiIdDyY",
+        "áàạảãâấầậẩẫăắằặẳẵ",
+        "ÁÀẠẢÃÂẤẦẬẨẪĂẮẰẶẲẴ",
+        "éèẹẻẽêếềệểễ",
+        "ÉÈẸẺẼÊẾỀỆỂỄ",
+        "óòọỏõôốồộổỗơớờợởỡ",
+        "ÓÒỌỎÕÔỐỒỘỔỖƠỚỜỢỞỠ",
+        "úùụủũưứừựửữ",
+        "ÚÙỤỦŨƯỨỪỰỬỮ",
+        "íìịỉĩ",
+        "ÍÌỊỈĨ",
+        "đ",
+        "Đ",
+        "ýỳỵỷỹ",
+        "ÝỲỴỶỸ"
+        };
+        public static string LocDau(string str)
+        {
+            //Thay thế và lọc dấu từng char      
+            for (int i = 1; i < VietNamChar.Length; i++)
+            {
+                for (int j = 0; j < VietNamChar[i].Length; j++)
+                    str = str.Replace(VietNamChar[i][j], VietNamChar[0][i - 1]);
+            }
+            return str;
+        }
         //Tìm kiếm
         [HttpPost]
         public ActionResult Search(FormCollection col)
         {
             String keySearch = col["txtseach"];
-            List<SANPHAM> lst = dulieu.SANPHAMs.Take(8).ToList();
-            List<SANPHAM> sanPhams =lst.Where(sp => sp.TENSP.Contains(keySearch)).ToList();
+            List<SANPHAM> lst = dulieu.SANPHAMs.ToList();
+            List<SANPHAM> sanPhams = new List<SANPHAM>();
+            keySearch = LocDau(keySearch);
+            keySearch = UpperToLower(keySearch);
+            foreach(SANPHAM s in lst)
+            {
+                string str1;
+                str1 = LocDau(s.TENSP);
+                str1 = UpperToLower(str1);
+                if (str1.Contains(keySearch))
+                    sanPhams.Add(s);
+            }
             if (sanPhams.Count == 0)
                 return View();
             Session["lsSanPham"] = sanPhams;
