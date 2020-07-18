@@ -18,17 +18,18 @@
     <tbody>
         @foreach (var i in Model)
         {
-            <tr>
-                <th scope="row">@i.MaSP</th>
-                <td>
-                    <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=false})"><<</a>
-                    @i.Soluong
-                    <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=true})">>></a>
-                </td>
-                <td>@i.DonGia</td>
-                <td>@i.ThanhTien</td>
-                <td><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("DeleteSP",new {ma=i.MaSP })">Delete</a></td>
-            </tr>
+        <tr>
+            <th scope="row">@i.MaSP</th>
+            <td>
+                <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=false})"><<</a>
+                @i.Soluong
+                <a class="btn btn-light" href="@Url.Action("UpdateSL",new {ma=i.MaSP,update=true})">>></a>
+            </td>
+            <td>@i.DonGia</td>
+            <td>@i.ThanhTien</td>
+            
+            <td><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("DeleteSP",new {ma=i.MaSP })"><img src="~/Models/Icon/x.svg" /></a></td>
+        </tr>
         }
         <tr>
             <td colspan="2">Tổng tiền : @ViewBag.Tongtien</td>

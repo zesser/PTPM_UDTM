@@ -127,8 +127,14 @@
     <Content Include="Models\anhsp\tutivisecret.JPG" />
     <Content Include="Models\anhsp\tuTrangTri01.JPG" />
     <Content Include="Models\anhsp\tuTrangTri02.JPG" />
+    <Content Include="Models\Icon\cart.svg" />
+    <Content Include="Models\Icon\envelope-closed.svg" />
+    <Content Include="Models\Icon\home.svg" />
+    <Content Include="Models\Icon\magnifying-glass.svg" />
     <Content Include="Models\Icon\menu.svg" />
     <Content Include="Models\Icon\person.svg" />
+    <Content Include="Models\Icon\phone.svg" />
+    <Content Include="Models\Icon\x.svg" />
     <Content Include="Scripts\css\bootstrap-grid.css.map" />
     <Content Include="Scripts\css\bootstrap-grid.min.css.map" />
     <Content Include="Scripts\css\bootstrap-reboot.css.map" />
