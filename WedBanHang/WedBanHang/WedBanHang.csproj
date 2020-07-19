@@ -195,6 +195,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>QLBanDoGo.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\sanpham.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -217,12 +218,13 @@
     <Content Include="Views\UserActive\mUser.cshtml" />
     <Content Include="Views\Home\lstLoaiSP.cshtml" />
     <Content Include="Views\DatHang\Dathang.cshtml" />
-    <Content Include="Views\Home\test.cshtml" />
-    <Content Include="Views\Home\testloi.cshtml" />
+    <Content Include="Views\Home\slideimage.cshtml" />
     <Content Include="Views\Home\lstPHONG.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\UserActive\TTCT.cshtml" />
     <Content Include="Views\DatHang\ThanhToan.cshtml" />
+    <Content Include="Views\Home\testloi.cshtml" />
+    <Content Include="Views\Home\ImageSP.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

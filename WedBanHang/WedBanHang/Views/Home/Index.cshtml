@@ -1,9 +1,8 @@
-﻿
+﻿@model IEnumerable<WedBanHang.Models.sanpham>
+
 @{
     ViewBag.Title = "Index";
 }
-@using WedBanHang.Models
-@model List<SANPHAM>
 <div class="container">
     <div class="row mt-5">
         <h2 class="list-product-title" style="color:black">Top san pham</h2>
@@ -11,20 +10,18 @@
             <div class="row">
                 @foreach (var i in Model)
                 {
-                <div class="col-md-3 col-sm-6 col-12" width="440" height="300">
-                    <div class="card card-product mb-3">
-                        <img class="card-img-top" src="~/Models/anhsp/@i.ANHSP"  width="440" height="300" alt="Card img cap" />
-                        <div class="card-body">
-                            <h5 class="card-title">@i.TENSP</h5>
-                            <p class="card-text">@i.GIA</p>
-                            <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("SanPham",new { Ma = i.MASP })">Xem chi tiết</a>
-                            <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("ThemGioHang","DatHang",new {Ma= i.MASP,select=1})">Mua ngay</a>
+                    <div class="col-md-3 col-sm-6 col-12" width="440" height="300">
+                        <div class="card card-product mb-3">
+                            <img class="card-img-top" src="~/Models/anhsp/anhdoanweb/@i.hinhsp" width="440" height="300" alt="Card img cap" />
+                            <div class="card-body">
+                                <h5 class="card-title">@i.tensp</h5>
+                                <p class="card-text">@i.giasp</p>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("SanPham",new { Ma = i.masp })">Xem chi tiết</a>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("ThemGioHang","DatHang",new {Ma= i.masp,select=1})">Mua ngay</a>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                }
+                    </div>}
             </div>
         </div>
     </div>
 </div>
-

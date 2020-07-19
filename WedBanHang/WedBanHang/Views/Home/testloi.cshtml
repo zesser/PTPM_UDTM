@@ -1,1 +1,28 @@
 ﻿
+@{
+    ViewBag.Title = "testloi";
+}
+@using WedBanHang.Models
+@model List<sanpham>
+    <div class="container">
+        <h2 class="list-product-title" style="color:black">Top san pham</h2>
+        <div class="row">
+                <div class="row">
+                    @foreach (var i in Model)
+                    {
+                        <div width="250" height="450">
+                            <div>
+                                <img src="~/Models/anhsp/anhdoanweb/@i.hinhsp" width="240" height="300" alt="Card img cap" />
+                                <div class="card-body">
+                                    <h5 class="card-title">@i.tensp</h5>
+                                    <p class="card-text">@i.giasp</p>
+                                    <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("SanPham",new { Ma = i.masp })">Xem chi tiết</a>
+                                    <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("ThemGioHang","DatHang",new {Ma= i.masp,select=1})">Mua ngay</a>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+        </div>
+    </div>
+

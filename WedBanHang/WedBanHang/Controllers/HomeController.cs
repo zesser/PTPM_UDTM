@@ -5,6 +5,7 @@ using System.Diagnostics.Contracts;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Runtime.Remoting.Messaging;
 using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
@@ -19,15 +20,19 @@ namespace WedBanHang.Controllers
         public ActionResult lstSanPham()
         {
             List<SANPHAM>lstsanpham = dulieu.SANPHAMs.ToList();
-            if (lstsanpham == null)
-                return Redirect("testloi");
             Session["lsSanPham"] = lstsanpham;
             return RedirectToAction("Index");
         }
         public ActionResult Index()
         {
             List<SANPHAM> lstSanPhams = Session["lsSanPham"] as List<SANPHAM>;
-            return View(lstSanPhams);
+            List<sanpham> lstHienThi = new List<sanpham>();
+            foreach(SANPHAM i in lstSanPhams)
+            {
+                sanpham sp = new sanpham(i.MASP);
+                lstHienThi.Add(sp);
+            }
+            return View(lstHienThi);
         }
         //Get all image in folder
 
@@ -50,10 +55,10 @@ namespace WedBanHang.Controllers
             return justFileName;
         }
         //get direction image
-        public static List<string> GetAllImageName()
+        public static List<string> GetAllImageName(String nameFolder)
         {
             List<string> lst = new List<string>();
-            String searchFolder = @"C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\Models\Anh\girl";
+            String searchFolder = @"C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\Models\anhsp\anhdoanweb\"+nameFolder;
             var filters = new String[] { "jpg", "jpeg", "png", "gif", "tiff", "bmp", "svg" };
             var files = GetFilesFrom(searchFolder, filters, false);
             foreach (string i in files)
@@ -134,6 +139,10 @@ namespace WedBanHang.Controllers
             if (sanPhams.Count == 0)
                 return View();
             Session["lsSanPham"] = sanPhams;
+            if (sanPhams.Count == 1)
+            {
+                return RedirectToAction("testloi", "Home");
+            }
             return RedirectToAction("Index","Home");
         }
         //Loại sản phẩm
@@ -162,15 +171,30 @@ namespace WedBanHang.Controllers
             Session["lsSanPham"] = SanPhams as List<SANPHAM>;
             return RedirectToAction("Index");
         }
-        public ActionResult test(string ma)
+        public ActionResult slideimage(string ma)
         {
             SANPHAM sp = dulieu.SANPHAMs.FirstOrDefault(s => s.MASP == ma);
-            List<string> lstImage = GetAllImageName();
+            List<string> lstImage = GetAllImageName(sp.ANHSP);
+            ViewBag.tenFolder = sp.ANHSP;
             return PartialView(lstImage);
         }
         public ActionResult testloi()
         {
-            return View();
+            List<SANPHAM> lstsp = Session["lsSanPham"] as List<SANPHAM>;
+            List<sanpham> lstHienThi = new List<sanpham>();
+            foreach (SANPHAM i in lstsp)
+            {
+                sanpham sp = new sanpham(i.MASP);
+                lstHienThi.Add(sp);
+            }
+            return View(lstHienThi);
+        }
+        public ActionResult ImageSP(String masp)
+        {
+            List<string> lstImage = GetAllImageName(masp);
+            String nameImage = lstImage[1];
+            ViewBag.tenFolder = (masp);
+            return PartialView(nameImage);
         }
     }
 }
