@@ -6,7 +6,7 @@
 @model KHACHHANG 
     <div class="container">
         <h2>Xin chào khách hàng @Model.TENKHACHHANG</h2><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mDangxuat")">Đăng xuất</a>
-        <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mUser")">Hóa Đơn</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mUser",new { Ma = Model.MAKHACHHANG })">Hóa Đơn</a>
         <form action="@Url.Action("UpdateKH","UserActive")" method="post" name="myForm" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="namedn" id="checkuser">User name(*)</label>

@@ -95,3 +95,4 @@ C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csproj.CopyComplete
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.dll
 C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.pdb
+C:\Users\phand\Downloads\PTPM_UDTM-master\PTPM_UDTM-master\WedBanHang\WedBanHang\obj\Debug\WedBanHang.csprojAssemblyReference.cache
