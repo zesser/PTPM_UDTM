@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewBag.Title = "Giohang";
+}
+@using WedBanHang.Models
+@model List<GioHang>
+<h2>Giohang</h2>
+<table>
+    <tr>
+        <td>Tên sản phẩm</td>
+        <td>Số lượng</td>
+        <td>Giá</td>
+        <td>Thành tiền</td>
+    </tr>
+    @foreach (var i in Model)
+    {
+        <tr>
+            <td>@i.MaSP</td>
+            <td><input type="text" name="soluong" value="@i.Soluong"/></td>
+            <td>@i.DonGia</td>
+            <td>@i.ThanhTien</td>
+        </tr>
+    }
+    <tr>
+        <td colspan="3">Tổng tiền : @ViewBag.Tongtien</td>
+        <td><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("SanPham")">Thanh Toán</a></td>
+    </tr>
+</table>

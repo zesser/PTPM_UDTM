@@ -1,0 +1,14 @@
+﻿body {
+}
+.mydropdowncss:hover .dropdown-menu {
+    display: block;
+    margin-top: 0;
+}
+.imgwhite{
+    background-color:#ffffff;
+    fill:#ffffff;
+}
+.searchloi{
+    width:auto;
+    height:100px;
+}

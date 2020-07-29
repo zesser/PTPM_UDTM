@@ -1,0 +1,77 @@
+﻿
+@{ ViewBag.Title = "Register"; }
+<h1 class="nav justify-content-center" style="color:aqua">Đăng ký khoản</h1>
+<div class="nav justify-content-center">
+    <form action="@Url.Action("InsertUserToDatabase")" method="post">
+        <table>
+            <tr>
+                <td>
+                    <a style="color:black">User Name</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_regUser"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color:black">Password</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_rePassword"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">nhập lại Password</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_rePassword2"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">Họ tên</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_Name"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">Địa chỉ</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_Diachi"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">Số điện thoại</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_Dienthoai"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">mail</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_mail"/>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a style="color: black">Ngày tháng năm sinh</a>
+                </td>
+                <td>
+                    <input type="text" name="txt_ngaythang"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"><input class="btn btn-outline-success my-2 my-sm-0" type="submit" value="Đăng ký"/></td>
+            </tr>
+        </table>
+    </form>
+
+</div>

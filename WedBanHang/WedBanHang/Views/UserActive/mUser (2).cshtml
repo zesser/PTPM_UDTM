@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "mUser";
+}
+@using WedBanHang.Models
+@model List<HoaDon>
+    <div class="container">
+        <h2>Xin chào khách hàng @ViewBag.HoaDon</h2><a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("mDangxuat")">Đăng xuất</a>
+        <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("TTCT",new {Ma=Session["UserDN"] })">Thông Tin Chi Tiết</a>
+        @foreach (HoaDon i in Model)
+        {
+            <div class="alert alert-success">
+                <button type="button" class="close btn btn-info" data-toggle="collapse" data-target="#demo"><img src="~/Models/Icon/menu.svg" height="20" width="20" /></button>
+                <strong>@i.maHoaDon</strong>ngày tạo: @i.ngayTao
+                <div id="demo" class="collapse">
+                    <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Mã Hóa Đơn</th>
+                                <th scope="col">Mã Sản Phẩm</th>
+                                <th scope="col">Số Lượng</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (ChiTietHoaDon n in i.chitiet)
+                            {
+                                <tr>
+                                    <th scope="row">+</th>
+                                    <td>@i.maHoaDon</td>
+                                    <td>@n.maSanPham</td>
+                                    <td>@n.SoLuong</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        }
+    </div>

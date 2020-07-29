@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "ThemPhieuMuaHang"; Muser t = Session["UserDN"] as Muser;
+}
+@using WedBanHang.Models
+@model List<GioHang>
+<div class="container">
+    <h2>THÔNG TIN THANH TOÁN</h2>
+    <div class="row">
+        <div class="col-sm-6">
+            <form action="@Url.Action("ThanhToan","DatHang")" method="post">
+                <div class="form-group">
+                    <label for="firstname">Họ tên(*)</label>
+                    <input type="text" class="form-control" id="firstname" placeholder="Enter firstname" name="firstname" data-required >
+                    <div class="invalid-feedback">Please fill your first name on this field.</div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address(*)</label>
+                    <input type="text" class="form-control" id="address" placeholder="Enter address" name="address" required >
+                    <div class="invalid-feedback">Please fill your address out this field.</div>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number(*)</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="phone number" pattern="[0]{1}[1-9]{1}[0-9]{7}[1-9]{1}" required >
+                    <div class="invalid-feedback">Please fill your phone out this field.</div>
+                </div>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="remember" required><a>I agree.</a>
+                        <i class="invalid-feedback">Please check  it to Continue</i>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+        <div class="col-sm-6">
+            <h2>ĐƠN HÀNG CỦA BẠN</h2>
+            <table class="table-striped">
+                <tr>
+                    <td style="text-decoration:">SẢN PHẨM</td>
+                    <td>TỔNG</td>
+                </tr>
+                @foreach (var i in Model)
+                {
+                    <tr>
+                        <td>@i.TenSP x @i.Soluong</td>
+                        <td>@i.ThanhTien</td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="2">
+                        <form action="@Url.Action("XuLyGiamGia")" method="post">
+                            <h5>Nhập Mã Giảm Giá</h5>
+                            <input type="text" name="magiamgia" />
+                            <button type="submit" class="btn btn-primary">Xác Nhận</button>
+                            <div style="color:red"> @Session["checkloi"]</div>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>

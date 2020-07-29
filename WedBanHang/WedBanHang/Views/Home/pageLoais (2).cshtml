@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "pageLoais";
+}
+@using WedBanHang.Models
+@model List<tbl_SanPham>
+<div class="container">
+    <div class="row mt-5">
+        <h2 class="list-product-title" style="color:black">Top san pham</h2>
+        <div class="product-group">
+            <div class="row">
+                @foreach (var i in Model)
+                {
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div class="card card-product mb-3">
+                            <img class="card-img-top" src="~/Models/Anh/101687691_146469747040460_122739041354383360_n.jpg" alt="Card img cap" />
+                            <div class="card-body">
+                                <h5 class="card-title">@i.TenSP</h5>
+                                <p class="card-text">@i.Gia</p>
+                                <a class="btn btn-outline-success my-2 my-sm-0" href="@Url.Action("SanPham",new { Ma = i.MaSanPham })">Xem chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
