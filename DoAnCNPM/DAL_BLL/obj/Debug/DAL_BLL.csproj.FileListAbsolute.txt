@@ -1,0 +1,14 @@
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.dll.config
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.dll
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.pdb
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.csproj.CoreCompileInputs.cache
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.dll
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.pdb
+D:\LT_PMTM\DoAnCNPM2\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.csprojAssemblyReference.cache
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.dll.config
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.dll
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\bin\Debug\DAL_BLL.pdb
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.csproj.CoreCompileInputs.cache
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.dll
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.pdb
+C:\Users\Hoang\Desktop\FormXuatHang\DoAnCNPM\DAL_BLL\obj\Debug\DAL_BLL.csprojAssemblyReference.cache
